@@ -3,6 +3,8 @@ import axios from 'axios'
 
 import './RandomQuoteMachine.css'
 
+import QuoteBox from './components/QuoteBox/QuoteBox'
+
 class RandomQuoteMachine extends Component {
   constructor(props) {
     super(props)
@@ -37,54 +39,17 @@ class RandomQuoteMachine extends Component {
   }
 
   render() {
-    let tweetLink = 'https://twitter.com/intent/tweet' // `?text=${this.state.randomQuote}`
     return (
       <div
         className="App"
         style={{ backgroundColor: this.state.randomColor, transition: '0.5s' }}
       >
-        <div id="quote-box">
-          <div id="text">
-            <p style={{ color: this.state.randomColor, transition: '0.5s' }}>
-              <span>"</span>
-              {this.state.randomQuote}
-            </p>
-          </div>
-          <div className="author-div">
-            <p
-              id="author"
-              style={{ color: this.state.randomColor, transition: '0.5s' }}
-            >
-              - {this.state.randomAuthor}
-            </p>
-          </div>
-          <div id="new-quote-div">
-            <button
-              id="new-quote"
-              style={{
-                backgroundColor: this.state.randomColor,
-                color: '#ffffff',
-                transition: '0.5s',
-              }}
-              onClick={this.setRandomQuote}
-            >
-              New Quote
-            </button>
-            <a
-              id="tweet-quote"
-              target="_blank"
-              rel="noreferrer"
-              href={tweetLink}
-              style={{
-                color: this.state.randomColor,
-
-                transition: '0.5s',
-              }}
-            >
-              Tweet this quote
-            </a>
-          </div>
-        </div>
+        <QuoteBox
+          randomQuote={this.state.randomQuote}
+          randomColor={this.state.randomColor}
+          randomAuthor={this.state.randomAuthor}
+          clicked={this.setRandomQuote}
+        />
       </div>
     )
   }
